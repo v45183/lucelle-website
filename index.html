@@ -10,19 +10,20 @@
 <body>
   <!-- Navigation -->
   <nav class="navbar">
-    <img src="logo.png" alt="Lucelle Logo" class="nav-logo">
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#products">Products</a></li>
       <li><a href="#about">About Us</a></li>
+      <li><a href="cart.html" class="cart-link">
+        <span class="cart-icon">🛍️</span>
+        <span id="cart-count">0</span>
+      </a></li>
     </ul>
-    <div class="cart">
-      🛍️ <span id="cart-count">0</span>
-    </div>
   </nav>
 
   <!-- Hero Section -->
   <header class="hero" id="home">
+    <img src="logo.png" alt="Lucelle Logo" class="logo">
     <h1>Lucelle</h1>
     <p class="tagline">Styled in Italy</p>
   </header>
@@ -35,13 +36,13 @@
         <img src="lipstick1.jpg" alt="Lipstick 1">
         <h3>Velvet Matte Lipstick</h3>
         <p>₹399</p>
-        <button class="add-to-cart">Add to Cart</button>
+        <button onclick="addToCart('Velvet Matte Lipstick', 399)">Add to Cart</button>
       </div>
       <div class="product">
         <img src="lipstick2.jpg" alt="Lipstick 2">
         <h3>Classic Red Liquid</h3>
         <p>₹449</p>
-        <button class="add-to-cart">Add to Cart</button>
+        <button onclick="addToCart('Classic Red Liquid', 449)">Add to Cart</button>
       </div>
     </div>
   </section>
@@ -54,10 +55,10 @@
     </p>
   </section>
 
-  <!-- Floating Icons -->
+  <!-- Floating Social Icons -->
   <div class="social-icons">
     <div class="icon instagram" onclick="alert('Coming Soon')">📷</div>
-    <div class="icon whatsapp" onclick="alert('Coming Soon')">💬</div>
+    <div class="icon whatsapp" onclick="alert('Coming Soon')">🟢</div>
   </div>
 
   <!-- Footer -->
@@ -66,16 +67,19 @@
   </footer>
 
   <script>
-    let cartCount = 0;
-    const cartDisplay = document.getElementById('cart-count');
-    const buttons = document.querySelectorAll('.add-to-cart');
+    function addToCart(name, price) {
+      const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('lucelleCart', JSON.stringify(cart));
+      updateCartCount();
+    }
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        cartCount++;
-        cartDisplay.textContent = cartCount;
-      });
-    });
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    updateCartCount();
   </script>
 </body>
 </html>
