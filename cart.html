@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucelle - Cart</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #3A0D0D;
+      color: #f9f5ef;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #D4AF37;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .cart-items {
+      margin-top: 30px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #5c1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    .subtotal {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #f9f5ef;
+    }
+
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .payment-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background-color: #FFD700;
+      color: #3A0D0D;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .payment-icon:hover {
+      background-color: #f5c518;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div class="cart-items" id="cart-items">
+    Items in your bag will appear here.
+  </div>
+
+  <div class="subtotal" id="subtotal">
+    Subtotal: ₹0
+  </div>
+
+  <div class="payment-icons">
+    <div class="payment-icon" onclick="alert('Coming Soon')">Paytm</div>
+    <div class="payment-icon" onclick="alert('Coming Soon')">PhonePe</div>
+  </div>
+
+  <script>
+    const cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+    const cartItemsDiv = document.getElementById('cart-items');
+    const subtotalDiv = document.getElementById('subtotal');
+
+    function renderCart() {
+      if (cartData.length === 0) {
+        cartItemsDiv.innerHTML = 'Your cart is empty.';
+        subtotalDiv.textContent = 'Subtotal: ₹0';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      cartData.forEach(item => {
+        html += `<p>${item.name} - ₹${item.price}</p>`;
+        total += item.price;
+      });
+      cartItemsDiv.innerHTML = html;
+      subtotalDiv.textContent = `Subtotal: ₹${total}`;
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
