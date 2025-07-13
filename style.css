@@ -6,105 +6,6 @@
   <title>Lucelle - Cart</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #3A0D0D;
-      color: #f9f5ef;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      color: #D4AF37;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .cart-items {
-      margin-top: 30px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: #5c1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      color: #FFD700;
-      font-weight: bold;
-      max-height: 400px;
-      overflow-y: auto;
-    }
-
-    .cart-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 15px;
-      background-color: #7a2b2b;
-      padding: 10px;
-      border-radius: 8px;
-      justify-content: space-between;
-    }
-
-    .cart-item img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .item-info {
-      flex: 1;
-      text-align: left;
-    }
-
-    .remove-btn {
-      background-color: #D4AF37;
-      border: none;
-      border-radius: 6px;
-      padding: 4px 8px;
-      color: #3A0D0D;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .remove-btn:hover {
-      background-color: #f5c518;
-    }
-
-    .subtotal {
-      font-size: 20px;
-      margin-top: 20px;
-      color: #f9f5ef;
-    }
-
-    .payment-icons {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .payment-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 16px;
-      background-color: #FFD700;
-      color: #3A0D0D;
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: 0.3s;
-    }
-
-    .payment-icon:hover {
-      background-color: #f5c518;
-    }
-  </style>
 </head>
 <body>
   <h1>Your Cart</h1>
@@ -122,15 +23,9 @@
   </div>
 
   <script>
-    let cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+    const cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
     const cartItemsDiv = document.getElementById('cart-items');
     const subtotalDiv = document.getElementById('subtotal');
-
-    function removeFromCart(index) {
-      cartData.splice(index, 1);
-      localStorage.setItem('lucelleCart', JSON.stringify(cartData));
-      renderCart();
-    }
 
     function renderCart() {
       if (cartData.length === 0) {
@@ -149,13 +44,19 @@
               <div>${item.name}</div>
               <div>₹${item.price}</div>
             </div>
-            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
           </div>
         `;
         total += item.price;
       });
       cartItemsDiv.innerHTML = html;
       subtotalDiv.textContent = `Subtotal: ₹${total}`;
+    }
+
+    function removeItem(index) {
+      cartData.splice(index, 1);
+      localStorage.setItem('lucelleCart', JSON.stringify(cartData));
+      renderCart();
     }
 
     renderCart();
