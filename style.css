@@ -1,154 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lucelle - Cart</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #3A0D0D;
-      color: #f9f5ef;
-      text-align: center;
-      padding: 40px 20px;
-    }
+/* Global */
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #3A0D0D;
+  color: #f9f5ef;
+}
 
-    h1 {
-      color: #D4AF37;
-      font-family: 'Playfair Display', serif;
-    }
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #D4AF37;
+}
 
-    .cart-items {
-      margin-top: 30px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: #5c1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      color: #FFD700;
-      font-weight: bold;
-      max-height: 400px;
-      overflow-y: auto;
-    }
+p {
+  font-size: 16px;
+}
 
-    .cart-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 15px;
-      background-color: #7a2b2b;
-      padding: 10px;
-      border-radius: 8px;
-      flex-wrap: wrap;
-    }
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+}
 
-    .cart-item img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
+.logo {
+  max-width: 120px;
+  margin-bottom: 15px;
+  animation: fadeIn 1s ease-in-out;
+}
 
-    .remove-btn {
-      background-color: #FFD700;
-      color: #3A0D0D;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+.tagline {
+  font-size: 18px;
+  color: #D4AF37;
+}
 
-    .subtotal {
-      font-size: 20px;
-      margin-top: 20px;
-      color: #f9f5ef;
-    }
+/* Navigation */
+.navbar {
+  background-color: #5c1a1a;
+  text-align: center;
+  padding: 10px 0;
+}
 
-    .payment-icons {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-    }
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
 
-    .payment-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 16px;
-      background-color: #FFD700;
-      color: #3A0D0D;
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: 0.3s;
-    }
+.navbar a {
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
 
-    .payment-icon:hover {
-      background-color: #f5c518;
-    }
-  </style>
-</head>
-<body>
-  <h1>Your Cart</h1>
-  <div class="cart-items" id="cart-items">
-    Items in your bag will appear here.
-  </div>
+.navbar a:hover {
+  text-decoration: underline;
+}
 
-  <div class="subtotal" id="subtotal">
-    Subtotal: ₹0
-  </div>
+/* Products */
+.products {
+  padding: 40px 20px;
+  text-align: center;
+}
 
-  <div class="payment-icons">
-    <div class="payment-icon" onclick="alert('Coming Soon')">Paytm</div>
-    <div class="payment-icon" onclick="alert('Coming Soon')">PhonePe</div>
-  </div>
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
 
-  <script>
-    let cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-    const cartItemsDiv = document.getElementById('cart-items');
-    const subtotalDiv = document.getElementById('subtotal');
-
-    function renderCart() {
-      if (cartData.length === 0) {
-        cartItemsDiv.innerHTML = 'Your cart is empty.';
-        subtotalDiv.textContent = 'Subtotal: ₹0';
-        return;
-      }
-
-      let html = '';
-      let total = 0;
-      cartData.forEach((item, index) => {
-        html += `
-          <div class="cart-item">
-            <img src="${item.image}" alt="${item.name}" />
-            <div>${item.name}<br>₹${item.price}</div>
-            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-          </div>
-        `;
-        total += item.price;
-      });
-
-      cartItemsDiv.innerHTML = html;
-      subtotalDiv.textContent = `Subtotal: ₹${total}`;
-    }
-
-    function removeItem(index) {
-      cartData.splice(index, 1);
-      localStorage.setItem('lucelleCart', JSON.stringify(cartData));
-      renderCart();
-    }
-
-    renderCart();
-  </script>
-</body>
-</html>
+.product {
+  background-color: #5c1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 200px;
