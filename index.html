@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lucelle - Styled in Italy</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Header & Logo -->
   <header class="hero" id="home">
     <img src="logo.png" alt="Lucelle Logo" class="logo" />
     <h1>Lucelle</h1>
     <p class="tagline">Styled in Italy</p>
   </header>
 
+  <!-- Navigation -->
   <nav class="navbar">
     <ul>
       <li><a href="#home">Home</a></li>
@@ -23,6 +26,7 @@
     </ul>
   </nav>
 
+  <!-- Product Section -->
   <section class="products" id="products">
     <h2>Our Signature Collection</h2>
     <div class="product-grid">
@@ -41,6 +45,7 @@
     </div>
   </section>
 
+  <!-- About Section -->
   <section class="about" id="about">
     <h2>About Lucelle</h2>
     <p>
@@ -48,13 +53,16 @@
     </p>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Lucelle. All rights reserved.</p>
   </footer>
 
+  <!-- Floating Social Icons -->
   <a href="#" class="floating-icon instagram" onclick="alert('Coming Soon')">📷</a>
   <a href="#" class="floating-icon whatsapp" onclick="alert('Coming Soon')">💬</a>
 
+  <!-- Scripts -->
   <script>
     function addToCart(name, price, image) {
       const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
@@ -70,5 +78,6 @@
 
     window.onload = updateCartCount;
   </script>
+
 </body>
 </html>
