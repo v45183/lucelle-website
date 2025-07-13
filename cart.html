@@ -16,6 +16,22 @@
       padding: 40px 20px;
     }
 
+    .home-btn {
+      display: inline-block;
+      background-color: #FFD700;
+      color: #3A0D0D;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      transition: background 0.3s;
+    }
+
+    .home-btn:hover {
+      background-color: #f5c518;
+    }
+
     h1 {
       color: #D4AF37;
       font-family: 'Playfair Display', serif;
@@ -23,13 +39,44 @@
 
     .cart-items {
       margin-top: 30px;
-      max-width: 400px;
+      max-width: 500px;
       margin-left: auto;
       margin-right: auto;
       background-color: #5c1a1a;
       padding: 20px;
       border-radius: 10px;
       color: #FFD700;
+      font-weight: bold;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+      background-color: #7a2b2b;
+      padding: 10px;
+      border-radius: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .remove-btn {
+      background-color: #FFD700;
+      color: #3A0D0D;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
       font-weight: bold;
     }
 
@@ -68,43 +115,12 @@
   </style>
 </head>
 <body>
+
+  <a href="index.html" class="home-btn">← Back to Home</a>
   <h1>Your Cart</h1>
+
   <div class="cart-items" id="cart-items">
     Items in your bag will appear here.
   </div>
 
-  <div class="subtotal" id="subtotal">
-    Subtotal: ₹0
-  </div>
-
-  <div class="payment-icons">
-    <div class="payment-icon" onclick="alert('Coming Soon')">Paytm</div>
-    <div class="payment-icon" onclick="alert('Coming Soon')">PhonePe</div>
-  </div>
-
-  <script>
-    const cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-    const cartItemsDiv = document.getElementById('cart-items');
-    const subtotalDiv = document.getElementById('subtotal');
-
-    function renderCart() {
-      if (cartData.length === 0) {
-        cartItemsDiv.innerHTML = 'Your cart is empty.';
-        subtotalDiv.textContent = 'Subtotal: ₹0';
-        return;
-      }
-
-      let html = '';
-      let total = 0;
-      cartData.forEach(item => {
-        html += `<p>${item.name} - ₹${item.price}</p>`;
-        total += item.price;
-      });
-      cartItemsDiv.innerHTML = html;
-      subtotalDiv.textContent = `Subtotal: ₹${total}`;
-    }
-
-    renderCart();
-  </script>
-</body>
-</html>
+  <div c
