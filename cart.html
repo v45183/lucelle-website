@@ -5,74 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lucelle - Cart</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Your Cart</h1>
-
-  <div class="cart-items" id="cart-items">Your cart is empty.</div>
-  <div class="subtotal" id="subtotal">Subtotal: ₹0</div>
-
-  <div class="payment-icons">
-    <div class="payment-icon" onclick="alert('Coming Soon')">Paytm</div>
-    <div class="payment-icon" onclick="alert('Coming Soon')">PhonePe</div>
-  </div>
-
-  <a class="home-link" href="index.html">← Back to Home</a>
-
-  <!-- Floating Icons -->
-  <div class="floating-icons">
-    <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon instagram">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-    </a>
-    <a href="cart.html" class="floating-icon cart-float">
-      🛍️<span class="cart-badge-float" id="floating-cart-count">0</span>
-    </a>
-  </div>
-
-  <script>
-    let cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-    const cartItemsDiv = document.getElementById('cart-items');
-    const subtotalDiv = document.getElementById('subtotal');
-
-    function renderCart() {
-      if (cartData.length === 0) {
-        cartItemsDiv.innerHTML = 'Your cart is empty.';
-        subtotalDiv.textContent = 'Subtotal: ₹0';
-        return;
-      }
-
-      let html = '';
-      let total = 0;
-      cartData.forEach((item, index) => {
-        html += `
-          <div class="cart-item">
-            <img src="${item.image}" alt="${item.name}" />
-            <div>${item.name}<br>₹${item.price}</div>
-            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-          </div>
-        `;
-        total += item.price;
-      });
-
-      cartItemsDiv.innerHTML = html;
-      subtotalDiv.textContent = `Subtotal: ₹${total}`;
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #3A0D0D;
+      color: #f9f5ef;
+      text-align: center;
+      padding: 40px 20px;
     }
 
-    function removeItem(index) {
-      cartData.splice(index, 1);
-      localStorage.setItem('lucelleCart', JSON.stringify(cartData));
-      renderCart();
-      updateFloatingCartCount();
+    h1 {
+      color: #D4AF37;
+      font-family: 'Playfair Display', serif;
     }
 
-    function updateFloatingCartCount() {
-      const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-      document.getElementById('floating-cart-count').textContent = cart.length;
+    .cart-items {
+      margin-top: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #5c1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      color: #FFD700;
+      font-weight: bold;
+      max-height: 400px;
+      overflow-y: auto;
     }
 
-    renderCart();
-    updateFloatingCartCount();
-  </script>
-</body>
-</html>
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+      background-color: #7a2b2b;
+      padding: 10px;
+      border-radius: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .remove-btn {
+      background-color: #FFD700;
+      color: #3A0D0D;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .subtotal {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #f9f5ef;
+    }
+
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .payment-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background-color: #FFD700;
+      color: #3A0D0D;
+      font-siz
