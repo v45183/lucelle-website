@@ -52,8 +52,15 @@
     <p>&copy; 2025 Lucelle. All rights reserved.</p>
   </footer>
 
-  <a href="#" class="floating-icon instagram" onclick="alert('Coming Soon')">📷</a>
-  <a href="#" class="floating-icon whatsapp" onclick="alert('Coming Soon')">💬</a>
+  <!-- Floating Icons -->
+  <div class="floating-icons">
+    <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+    </a>
+    <a href="cart.html" class="floating-icon cart-float">
+      🛍️<span class="cart-badge-float" id="floating-cart-count">0</span>
+    </a>
+  </div>
 
   <script>
     function addToCart(name, price, image) {
@@ -61,6 +68,7 @@
       cart.push({ name, price, image });
       localStorage.setItem('lucelleCart', JSON.stringify(cart));
       updateCartCount();
+      updateFloatingCartCount();
     }
 
     function updateCartCount() {
@@ -68,7 +76,13 @@
       document.getElementById('cart-count').textContent = cart.length;
     }
 
+    function updateFloatingCartCount() {
+      const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+      document.getElementById('floating-cart-count').textContent = cart.length;
+    }
+
     updateCartCount();
+    updateFloatingCartCount();
   </script>
 </body>
 </html>
