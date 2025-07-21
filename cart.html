@@ -83,4 +83,151 @@
       border-radius: 16px;
       background-color: #FFD700;
       color: #3A0D0D;
-      font-siz
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .payment-icon:hover {
+      background-color: #f5c518;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #FFD700;
+      color: #3A0D0D;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .floating-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .floating-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #FFD700;
+      color: #3A0D0D;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .floating-icon:hover {
+      background-color: #f5c518;
+    }
+
+    .cart-badge-float {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: bold;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      .cart-items {
+        max-width: 90%;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+
+  <div class="cart-items" id="cart-items">Your cart is empty.</div>
+  <div class="subtotal" id="subtotal">Subtotal: ₹0</div>
+
+  <div class="payment-icons">
+    <div class="payment-icon" onclick="alert('Coming Soon')">Paytm</div>
+    <div class="payment-icon" onclick="alert('Coming Soon')">PhonePe</div>
+  </div>
+
+  <a class="home-link" href="index.html">← Back to Home</a>
+
+  <!-- Floating icons -->
+  <div class="floating-icons">
+    <a href="cart.html" class="floating-icon">
+      🛍️<span class="cart-badge-float" id="floating-cart-count">0</span>
+    </a>
+    <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" style="width: 24px; height: 24px;">
+    </a>
+  </div>
+
+  <script>
+    let cartData = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+    const cartItemsDiv = document.getElementById('cart-items');
+    const subtotalDiv = document.getElementById('subtotal');
+    const badge = document.getElementById('floating-cart-count');
+
+    function renderCart() {
+      if (cartData.length === 0) {
+        cartItemsDiv.innerHTML = 'Your cart is empty.';
+        subtotalDiv.textContent = 'Subtotal: ₹0';
+        badge.textContent = '0';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      cartData.forEach((item, index) => {
+        html += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" />
+            <div>${item.name}<br>₹${item.price}</div>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          </div>
+        `;
+        total += item.price;
+      });
+
+      cartItemsDiv.innerHTML = html;
+      subtotalDiv.textContent = `Subtotal: ₹${total}`;
+      badge.textContent = cartData.length;
+    }
+
+    function removeItem(index) {
+      cartData.splice(index, 1);
+      localStorage.setItem('lucelleCart', JSON.stringify(cartData));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
