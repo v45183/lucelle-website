@@ -1,51 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucelle Product Verification</title>
-  <style>
-    /* Your existing CSS styles */
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucelle Product Verification</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin:0; padding:0;
+    background: linear-gradient(135deg, #fff8f0, #f7ece0);
+    display:flex; justify-content:center; align-items:center;
+    min-height:100vh;
+  }
+  .card {
+    background: #fff8f2;
+    border: 2px solid #d4a017;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+  }
+  h1 { color: #b47d28; font-size: 1.7em; margin-bottom: 10px;}
+  p { margin: 5px 0; font-size: 1em; color: #4b2e2e;}
+  img { max-width: 200px; margin: 20px 0; border-radius: 12px; border: 1px solid #d4a017; }
+  .badge {
+    display:inline-block;
+    font-weight:bold;
+    padding:5px 15px;
+    border-radius:20px;
+    margin-top:15px;
+    font-size:1.1em;
+  }
+  .genuine { background:#4CAF50; color:#fff; }
+  .not-genuine { background:#F44336; color:#fff; }
+  @media (max-width: 480px){
+    .card { padding: 20px; margin: 15px; }
+    img { max-width: 150px; }
+  }
+</style>
 </head>
 <body>
-  <div class="card" id="product">
-    <h1>Verifying product...</h1>
-  </div>
+<div class="card" id="product">
+  <h1>Verifying product...</h1>
+</div>
 
-  <script>
-    const sheetAPI = 'https://api.sheetbest.com/sheets/4af7e26f-3ace-4824-8f8d-b145b1a52faf';
-    const urlParams = new URLSearchParams(window.location.search);
-    const productID = urlParams.get('id');
-    const container = document.getElementById('product');
+<script>
+const sheetAPI = 'https://api.sheetbest.com/sheets/4af7e26f-3ace-4824-8f8d-b145b1a52faf';
+const urlParams = new URLSearchParams(window.location.search);
+const productID = urlParams.get('id');
+const container = document.getElementById('product');
 
-    if (!productID) {
-      container.innerHTML = '<span class="badge not-genuine">No Product ID found.</span>';
-    } else {
-      fetch(sheetAPI)
-        .then(res => res.json())
-        .then(data => {
-          const product = data.find(p => p['Product ID'].trim() === productID.trim());
-          if (product) {
-            container.innerHTML = `
-              <h1>${product['Name']}</h1>
-              ${product['Image'] ? `<img src="${product['Image']}" alt="${product['Name']}">` : ''}
-              <p><strong>Size:</strong> ${product['Size']}</p>
-              <p><strong>Expiry:</strong> ${product['Expiry']}</p>
-              <p><strong>Batch:</strong> ${product['Batch']}</p>
-              <p><strong>Status:</strong> ${product['Status']}</p>
-              ${product['Notes'] ? `<p><em>${product['Notes']}</em></p>` : ''}
-              <span class="badge genuine">✅ Genuine</span>
-            `;
-          } else {
-            container.innerHTML = '<span class="badge not-genuine">❌ Not Genuine</span>';
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          container.innerHTML = '<span class="badge not-genuine">Error loading product.</span>';
-        });
-    }
-  </script>
+if (!productID) {
+  container.innerHTML = '<span class="badge not-genuine">No Product ID found.</span>';
+} else {
+  fetch(sheetAPI)
+    .then(res => res.json())
+    .then(data => {
+      const product = data.find(p => p['Product ID'].trim() === productID.trim());
+      if (product) {
+        container.innerHTML = `
+          <h1>${product['Name']}</h1>
+          ${product['Image'] ? `<img src="${product['Image']}" alt="${product['Name']}">` : ''}
+          <p><strong>Size:</strong> ${product['Size']}</p>
+          <p><strong>Expiry:</strong> ${product['Expiry']}</p>
+          <p><strong>Batch:</strong> ${product['Batch']}</p>
+          <p><strong>Status:</strong> ${product['Status']}</p>
+          ${product['Notes'] ? `<p><em>${product['Notes']}</em></p>` : ''}
+          <span class="badge genuine">✅ Genuine</span>
+        `;
+      } else {
+        container.innerHTML = '<span class="badge not-genuine">❌ Not Genuine</span>';
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      container.innerHTML = '<span class="badge not-genuine">Error loading product.</span>';
+    });
+}
+</script>
 </body>
 </html>
