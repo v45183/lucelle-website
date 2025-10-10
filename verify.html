@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucelle Product Verification</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin:0; padding:0;
+    background: linear-gradient(135deg, #fff8f0, #f7ece0);
+    display:flex; justify-content:center; align-items:center;
+    min-height:100vh;
+  }
+  .card {
+    background: #fff8f2;
+    border: 2px solid #d4a017;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+  }
+  h1 {
+    color: #b47d28;
+    font-size: 1.7em;
+    margin-bottom: 10px;
+  }
+  p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #4b2e2e;
+  }
+  img {
+    max-width: 200px;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid #d4a017;
+  }
+  .not-genuine {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+  @media (max-width: 480px){
+    .card { padding: 20px; margin: 15px; }
+    img { max-width: 150px; }
+  }
+</style>
+</head>
+<body>
+<div class="card" id="product">
+  <h1>Verifying product...</h1>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+<script>
+  // Google Sheet ID
+  const sheetID = '1TOjNelSG6symhfwmw4qGT1gtvm_BfR05b1jGNq5cFBY';
+
+  // Get product ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const productID = urlParams.get('id');
+
+  if(!productID){
+    document.getElementById('product').innerHTML = '<p class="not-genuine">No Product ID found.</p>';
+  } else {
+    Tabletop.init({
+      key: sheetID,
+      simpleSheet: true,
+      callback: function(data){
+        const product = data.find(p => p['Product ID'] === productID);
+        const container = document.getElementById('product');
+        if(product){
+          container.innerHTML = `
+            <h1>${product['Name']}</h1>
+            ${product['Image'] ? `<img src="${product['Image']}" alt="${product['Name']}">` : ''}
+            <p><strong>Size:</strong> ${product['Size']}</p>
+            <p><strong>Expiry:</strong> ${product['Expiry']}</p>
+            <p><strong>Batch:</strong> ${product['Batch']}</p>
+            <p><strong>Status:</strong> ${product['Status']}</p>
+            ${product['Notes'] ? `<p><em>${product['Notes']}</em></p>` : ''}
+          `;
+        } else {
+          container.innerHTML = '<p class="not-genuine">This product is not genuine.</p>';
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>
