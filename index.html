@@ -208,10 +208,10 @@
     <h2>Our Signature Collection</h2>
     <div class="product-grid">
       <div class="product">
-        <img src="ruby-noir.jpg" alt="Lucelle True Matte Ruby Noir 4ml">
+        <img src="ruby-noir.jpeg" alt="Lucelle True Matte Ruby Noir 4ml">
         <h3>Lucelle True Matte Ruby Noir 4ml</h3>
         <p><del>₹1299</del> <strong>₹799</strong></p>
-        <button onclick="addToCart('Lucelle True Matte Ruby Noir 4ml', 799, 'ruby-noir.jpg')">Add to Cart</button>
+        <button onclick="addToCart('Lucelle True Matte Ruby Noir 4ml', 799, 'ruby-noir.jpeg')">Add to Cart</button>
       </div>
     </div>
   </section>
@@ -243,7 +243,7 @@
       cart.push({ name, price, image });
       localStorage.setItem('lucelleCart', JSON.stringify(cart));
       updateCartCount();
-      alert(name + " added to your bag!");
+      // alert removed as requested
     }
 
     function updateCartCount() {
