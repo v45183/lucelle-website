@@ -1,56 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucelle Product Verification</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lucelle — Verify Product</title>
 <style>
-  body { font-family: Arial, sans-serif; background:#fff8f0; color:#333; text-align:center; padding:20px; }
-  .container { max-width:400px; margin:0 auto; border:1px solid #e0c090; padding:20px; border-radius:15px; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
-  img { max-width:100%; border-radius:10px; margin-bottom:15px;}
-  .badge.genuine { display:inline-block; padding:10px 15px; background:#4CAF50; color:white; font-weight:bold; border-radius:20px; font-size:18px; margin-top:10px;}
-  .error { color:red; font-weight:bold; }
-  p { margin:5px 0; }
+  body{font-family:Arial,Helvetica,sans-serif;background:#fff8f0;color:#3a0d0d;margin:0;padding:28px;}
+  .wrap{max-width:760px;margin:0 auto}
+  .card{background:#fff;border:1px solid #ecd7b8;padding:22px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06);text-align:center}
+  h1{color:#b47d28;margin:4px 0 10px}
+  img{max-width:320px;border-radius:10px;border:1px solid #e7c67a}
+  .meta{color:#5b3a3a;margin-top:10px}
+  .badge{display:inline-block;padding:10px 16px;border-radius:20px;color:#fff;font-weight:700;margin-top:12px}
+  .genuine{background:#4CAF50}
+  .notfound{background:#F44336;padding:10px 14px;border-radius:8px;color:#fff;font-weight:700}
+  .small{font-size:13px;color:#7a5b5b;margin-top:8px}
+  pre.debug{background:#fff6ed;padding:10px;border-radius:8px;overflow:auto;max-height:260px}
 </style>
 </head>
 <body>
-
-<div class="container" id="product-container">
-  <h2>Verifying Product...</h2>
-</div>
+  <div class="wrap">
+    <div class="card" id="card">
+      <h1>Verifying product...</h1>
+      <div id="content" class="small">Please wait — fetching data.</div>
+    </div>
+  </div>
 
 <script>
-const sheetURL = "https://api.sheetbest.com/sheets/4af7e26f-3ace-4824-8f8d-b145b1a52faf"; // replace with your Sheet.best JSON URL
+/*
+  Google Sheets GViz JSON approach (no third-party):
+  - SHEET_ID is already set to your sheet.
+  - Make sure the sheet is shared "Anyone with link - Viewer".
+*/
+(function(){
+  const SHEET_ID = '1TOjNelSG6symhfwmw4qGT1gtvm_BfR05b1jGNq5cFBY'; // <--- your sheet id
+  const SHEET_GID = 0; // change if your data is on another sheet tab
+  const gvizURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=out:json`;
 
-// Get product ID from URL
-const urlParams = new URLSearchParams(window.location.search);
-const productID = urlParams.get('id');
+  const content = document.getElementById('content');
+  const card = document.getElementById('card');
 
-const container = document.getElementById('product-container');
+  // read id from URL
+  const params = new URLSearchParams(window.location.search);
+  const rawId = params.get('id');
+  if(!rawId){
+    content.innerHTML = '<div class="notfound">No product id in URL — add ?id=PRODUCT_ID</div>';
+    return;
+  }
+  const targetId = rawId.trim();
 
-fetch(sheetURL)
-  .then(res => res.json())
-  .then(data => {
-    const product = data.find(p => p['Product ID'] === productID);
-    if(product) {
-      container.innerHTML = `
-        <h1>${product['Name']}</h1>
-        <img src="${product['Image'] ? product['Image'] : 'https://via.placeholder.com/300x200?text=Lucelle+Product'}" alt="${product['Name']}">
-        <p><strong>Size:</strong> ${product['Size']}</p>
-        <p><strong>Expiry:</strong> ${product['Expiry']}</p>
-        <p><strong>Batch:</strong> ${product['Batch']}</p>
-        ${product['Sold Via'] ? `<p style="font-style:italic; margin-bottom:5px;">${product['Sold Via']}</p>` : ''}
-        <span class="badge genuine">✅ Genuine</span>
+  // helper: safe text
+  function safe(x, fallback='-'){ return (x === undefined || x === null || x === '') ? fallback : String(x); }
+
+  fetch(gvizURL)
+    .then(r => {
+      if(!r.ok) throw new Error('Network response ' + r.status + ' ' + r.statusText);
+      return r.text();
+    })
+    .then(text => {
+      // strip wrapper
+      const jsonText = text.replace(/^[^\(]*\(\s*/, '').replace(/\);\s*$/,'');
+      const obj = JSON.parse(jsonText);
+      const cols = obj.table.cols.map(c => (c && c.label) ? c.label : '');
+      const rows = obj.table.rows || [];
+      const data = rows.map(r => {
+        const rowObj = {};
+        cols.forEach((colLabel, i) => {
+          const cell = r.c[i];
+          rowObj[colLabel] = cell && cell.v !== undefined ? cell.v : '';
+        });
+        return rowObj;
+      });
+
+      console.log('GViz rows (sample):', data.slice(0,6));
+
+      // find product by Product ID (trim + case-insensitive)
+      const found = data.find(row => {
+        const key = Object.keys(row).find(k => k.toLowerCase().replace(/\s+/g,'') === 'productid');
+        if(!key) return false;
+        const val = (row[key] || '').toString().trim();
+        return val.toLowerCase() === targetId.toLowerCase();
+      });
+
+      if(!found){
+        content.innerHTML = '<div class="notfound">❌ Product not found or Product ID mismatch.</div>' +
+          `<div class="small" style="margin-top:8px">Checked ID: <strong>${targetId}</strong></div>` +
+          `<div class="small" style="margin-top:6px;color:#9a6b6b">Tip: ensure Product ID exactly matches (no extra spaces).</div>`;
+        return;
+      }
+
+      function getRowVal(obj, name){
+        const foundKey = Object.keys(obj).find(k => k.toLowerCase().replace(/\s+/g,'') === name.toLowerCase().replace(/\s+/g,''));
+        return foundKey ? obj[foundKey] : '';
+      }
+
+      const name = safe(getRowVal(found,'Name'), 'Lucelle Product');
+      const size = safe(getRowVal(found,'Size'), '-');
+      const expiry = safe(getRowVal(found,'Expiry'), '-');
+      const batch = safe(getRowVal(found,'Batch'), '-');
+      const image = getRowVal(found,'Image') || '';
+      const soldVia = safe(getRowVal(found,'Sold Via') || getRowVal(found,'SoldVia') || getRowVal(found,'Sold'), '');
+
+      card.innerHTML = `
+        <h1 style="color:#b47d28">${escapeHtml(name)}</h1>
+        <div style="margin-top:12px">
+          <img src="${image ? escapeHtml(image) : 'https://via.placeholder.com/300x200?text=Lucelle+Product'}"
+               alt="${escapeHtml(name)}" onerror="this.src='https://via.placeholder.com/300x200?text=Image+not+found'">
+        </div>
+        <div class="meta"><strong>Size:</strong> ${escapeHtml(size)} &nbsp; <strong>Expiry:</strong> ${escapeHtml(expiry)} &nbsp; <strong>Batch:</strong> ${escapeHtml(batch)}</div>
+        ${ soldVia ? `<div style="font-style:italic;margin-top:10px;color:#5b3a3a">${escapeHtml(soldVia)}</div>` : '' }
+        <div><span class="badge genuine">✅ Genuine</span></div>
+        <div class="small" style="margin-top:10px">Product ID: <strong>${escapeHtml(targetId)}</strong></div>
       `;
-    } else {
-      container.innerHTML = `<p class="error">❌ Product not found or not genuine</p>`;
-    }
-  })
-  .catch(err => {
-    container.innerHTML = `<p class="error">❌ Error loading product data</p>`;
-    console.error(err);
-  });
-</script>
+    })
+    .catch(err => {
+      console.error(err);
+      content.innerHTML = `<div class="notfound">✖ Error loading product data — ${escapeHtml(err.message || err)}</div>`;
+    });
 
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"'`=\/]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#47;','`':'&#96;','=':'&#61;'}[c]; });
+  }
+})();
+</script>
 </body>
 </html>
