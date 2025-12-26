@@ -15,7 +15,7 @@
 <nav class="navbar">
   <ul>
     <li><a href="#">Home</a></li>
-    <li><a href="#">Product</a></li>
+    <li><a href="#product">Product</a></li>
     <li><a href="#">Reviews</a></li>
     <li><a href="#">About</a></li>
     <li><a href="#">Cart <span id="cart-count">0</span></a></li>
@@ -29,13 +29,30 @@
   <p class="tagline">Styled in Italy</p>
 </header>
 
-<!-- CONTENT PLACEHOLDER -->
+<!-- PRODUCT SECTION (ADDED ONLY THIS) -->
+<section class="about" id="product">
+  <h2>Lucelle True Matte Ruby Noir</h2>
+
+  <div class="product-slider">
+    <img src="p1.jpg" class="product-slide active" alt="Product Image 1">
+    <img src="p2.jpg" class="product-slide" alt="Product Image 2">
+    <img src="p3.jpg" class="product-slide" alt="Product Image 3">
+    <img src="p4.jpg" class="product-slide" alt="Product Image 4">
+    <img src="p5.jpg" class="product-slide" alt="Product Image 5">
+    <img src="p6.jpg" class="product-slide" alt="Product Image 6">
+    <img src="p7.jpg" class="product-slide" alt="Product Image 7">
+  </div>
+
+  <p><strong>₹799</strong></p>
+</section>
+
+<!-- CONTENT PLACEHOLDER (UNCHANGED) -->
 <section class="about">
   <h2>Welcome to Lucelle</h2>
   <p>This page is intentionally minimal to safely fix floating buttons.</p>
 </section>
 
-<!-- FLOATING INSTAGRAM & CART (ONLY PLACE THEY EXIST) -->
+<!-- FLOATING INSTAGRAM & CART (UNCHANGED) -->
 <div class="floating-icons">
 
   <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon" aria-label="Instagram">
@@ -49,7 +66,7 @@
 
 </div>
 
-<!-- CART COUNT SYNC -->
+<!-- CART COUNT SYNC (UNCHANGED) -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const cart = JSON.parse(localStorage.getItem("lucelleCart")) || [];
@@ -58,6 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const floating = document.getElementById("floating-cart-count");
   if (top) top.textContent = count;
   if (floating) floating.textContent = count;
+});
+</script>
+
+<!-- PRODUCT SLIDER SCRIPT (ADDED ONLY THIS) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let i = 0;
+  const slides = document.querySelectorAll(".product-slide");
+
+  if (slides.length > 1) {
+    setInterval(() => {
+      slides[i].classList.remove("active");
+      i = (i + 1) % slides.length;
+      slides[i].classList.add("active");
+    }, 3000);
+  }
 });
 </script>
 
