@@ -58,7 +58,27 @@ h1, h2 {
   text-align: center;
 }
 
-/* FLOATING INSTAGRAM & CART (FINAL FIX) */
+/* =========================
+   PRODUCT IMAGE SLIDER (ADDED)
+========================= */
+
+.product-slider {
+  max-width: 260px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.product-slide {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product-slide.active {
+  display: block;
+}
+
+/* FLOATING INSTAGRAM & CART */
 .floating-icons {
   position: fixed;
   bottom: 20px;
