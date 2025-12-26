@@ -1,130 +1,120 @@
-/* =========================
-   General
-========================= */
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background-color: #3A0D0D;
+  background: #3A0D0D;
   color: #f9f5ef;
 }
 
-/* =========================
-   Hero / Header
-========================= */
+/* NAVBAR */
+.navbar {
+  background: #5c1a1a;
+  padding: 10px 0;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+.navbar a {
+  color: gold;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* HERO */
 .hero {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px;
 }
-
 .logo {
   width: 120px;
-  margin-bottom: 15px;
-  animation: fadeIn 1s ease-in-out;
 }
-
 h1, h2 {
   font-family: 'Playfair Display', serif;
   color: #D4AF37;
 }
 
-.tagline {
-  color: #D4AF37;
-  font-size: 18px;
-}
-
-/* =========================
-   Navigation Bar
-========================= */
-.navbar {
-  background-color: #5c1a1a;
+/* PRODUCT */
+.product-section {
   text-align: center;
-  padding: 10px 0;
+  padding: 40px;
 }
-
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+.slider {
+  max-width: 250px;
+  margin: auto;
 }
-
-.navbar a {
-  color: #FFD700;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-#cart-count {
-  background: gold;
-  color: #3A0D0D;
-  border-radius: 50%;
-  padding: 2px 8px;
-  font-size: 14px;
-  margin-left: 5px;
-}
-
-/* =========================
-   About / Story / Sections
-========================= */
-.about {
-  padding: 40px 20px;
-  background-color: #4c1212;
-  text-align: center;
-}
-
-/* =========================
-   Products Section
-========================= */
-.products {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.product-grid {
-  display: flex;
-  justify-content: center;
-}
-
-.product {
-  background-color: #5c1a1a;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 260px;
-  color: #FFD700;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* =========================
-   Product Image Slider
-========================= */
-.product-slider {
-  position: relative;
-}
-
-.product-slide {
+.slide {
+  display: none;
   width: 100%;
   border-radius: 10px;
-  display: none;
+}
+.slide.active {
+  display: block;
+}
+.price {
+  font-size: 20px;
+}
+button {
+  background: gold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
 }
 
-.product-slide.active {
+/* REVIEWS */
+.reviews {
+  text-align: center;
+  padding: 40px;
+}
+.review {
+  display: none;
+}
+.review.active {
   display: block;
 }
 
-.product-dots {
-  margin-top: 10px;
+/* ABOUT */
+.about {
+  background: #4c1212;
+  padding: 40px;
   text-align: center;
 }
 
-.p-dot {
-  height: 8px;
-  width: 8px;
-  background-color: #aaa;
-  bord
+/* FLOATING BUTTONS */
+.floating {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.float-btn {
+  width: 50px;
+  height: 50px;
+  background: gold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  position: relative;
+}
+.float-btn img {
+  width: 26px;
+}
+.cart span {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
