@@ -43,16 +43,33 @@
     <img src="p7.jpg" class="product-slide" alt="Product Image 7">
   </div>
 
-  <p><strong>₹799</strong></p>
+  <p><strong>₹699</strong></p>
 </section>
 
 <section class="about" id="reviews">
   <h2>Customer Reviews</h2>
 
-  <p>★★★★★ “Beautiful shade and premium feel.” – Aditi, Mumbai</p>
-  <p>★★★★★ “Stays long and feels light.” – Neha, Delhi</p>
-  <p>★★★★☆ “Very classy packaging.” – Riya, Bengaluru</p>
-  <p>★★★★★ “Perfect for evening looks.” – Pooja, Pune</p>
+  <div class="review-slider">
+
+    <div class="review active">★★★★★ “Beautiful shade and premium feel.” – Aditi, Mumbai</div>
+    <div class="review">★★★★★ “Very smooth and long lasting.” – Neha, Delhi</div>
+    <div class="review">★★★★☆ “Classy packaging.” – Riya, Bengaluru</div>
+    <div class="review">★★★★★ “Perfect evening lipstick.” – Pooja, Pune</div>
+    <div class="review">★★★★☆ “No dryness at all.” – Ananya, Kolkata</div>
+
+    <div class="review">★★★★★ “Color looks rich on lips.” – Kavya, Jaipur</div>
+    <div class="review">★★★★★ “Premium feel like luxury brands.” – Sneha, Indore</div>
+    <div class="review">★★★★☆ “Good pigmentation.” – Meera, Chennai</div>
+    <div class="review">★★★★★ “Stays even after meals.” – Ritu, Noida</div>
+    <div class="review">★★★★☆ “Nice matte finish.” – Nisha, Bhopal</div>
+
+    <div class="review">★★★★★ “Worth the price.” – Shreya, Patna</div>
+    <div class="review">★★★★★ “My go-to lipstick now.” – Isha, Surat</div>
+    <div class="review">★★★★☆ “Comfortable for daily use.” – Tanya, Lucknow</div>
+    <div class="review">★★★★★ “Very elegant shade.” – Komal, Udaipur</div>
+    <div class="review">★★★★★ “Loved the texture.” – Pankhuri, Dehradun</div>
+
+  </div>
 </section>
 
 
@@ -97,6 +114,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  let reviewIndex = 0;
+  const reviews = document.querySelectorAll(".review");
+
+  if (reviews.length > 1) {
+    setInterval(() => {
+      reviews[reviewIndex].classList.remove("active");
+      reviewIndex = (reviewIndex + 1) % reviews.length;
+      reviews[reviewIndex].classList.add("active");
+    }, 3500);
+  }
+});
+</script>
+
 
 </body>
 </html>
