@@ -16,9 +16,9 @@
   <ul>
     <li><a href="#">Home</a></li>
     <li><a href="#product">Product</a></li>
-    <li><a href="#">Reviews</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Cart <span id="cart-count">0</span></a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
   </ul>
 </nav>
 
@@ -29,34 +29,42 @@
   <p class="tagline">Styled in Italy</p>
 </header>
 
-<!-- PRODUCT SECTION (ADDED ONLY THIS) -->
-<section class="about" id="about">
- <p>
-Lucelle is an Italian-inspired beauty brand blending timeless elegance
-with modern confidence. Crafted for women who appreciate refined luxury,
-bold color, and effortless sophistication.
-</p>
+<!-- PRODUCT / ABOUT -->
+<section class="about" id="product">
+  <p>
+    Lucelle is an Italian-inspired beauty brand blending timeless elegance
+    with modern confidence. Crafted for women who appreciate refined luxury,
+    bold color, and effortless sophistication.
+  </p>
 
-  <h2>Lucelle True Matte Ruby Noir Lipstick | Deep Maroon-Wine Long Lasting Matte Lipstick for Women | Smudge-Proof, Vegan & Alcohol-Free Formula – 4 ml</h2>
+  <h2>
+    Lucelle True Matte Ruby Noir Lipstick | Deep Maroon-Wine Long Lasting Matte
+    Lipstick for Women | Smudge-Proof, Vegan & Alcohol-Free Formula – 4 ml
+  </h2>
 
   <div class="product-slider">
-    <img src="p1.jpg" class="product-slide active" alt="Product Image 1">
-    <img src="p2.jpg" class="product-slide" alt="Product Image 2">
-    <img src="p3.jpg" class="product-slide" alt="Product Image 3">
-    <img src="p4.jpg" class="product-slide" alt="Product Image 4">
-    <img src="p5.jpg" class="product-slide" alt="Product Image 5">
-    <img src="p6.jpg" class="product-slide" alt="Product Image 6">
-    <img src="p7.jpg" class="product-slide" alt="Product Image 7">
+    <img src="p1.jpg" class="product-slide active">
+    <img src="p2.jpg" class="product-slide">
+    <img src="p3.jpg" class="product-slide">
+    <img src="p4.jpg" class="product-slide">
+    <img src="p5.jpg" class="product-slide">
+    <img src="p6.jpg" class="product-slide">
+    <img src="p7.jpg" class="product-slide">
   </div>
 
   <p><strong>₹699</strong></p>
+
+  <!-- ADD TO CART BUTTON (ADDED) -->
+  <button onclick="addToCart()">
+    Add to Cart
+  </button>
 </section>
 
+<!-- REVIEWS -->
 <section class="about" id="reviews">
   <h2>Customer Reviews</h2>
 
   <div class="review-slider">
-
     <div class="review active">★★★★★ “Beautiful shade and premium feel.” – Aditi, Mumbai</div>
     <div class="review">★★★★★ “Very smooth and long lasting.” – Neha, Delhi</div>
     <div class="review">★★★★☆ “Classy packaging.” – Riya, Bengaluru</div>
@@ -74,116 +82,90 @@ bold color, and effortless sophistication.
     <div class="review">★★★★☆ “Comfortable for daily use.” – Tanya, Lucknow</div>
     <div class="review">★★★★★ “Very elegant shade.” – Komal, Udaipur</div>
     <div class="review">★★★★★ “Loved the texture.” – Pankhuri, Dehradun</div>
-
-    <hr style="margin:30px 0; opacity:0.3;">
-
-<h3>Add Your Review</h3>
-
-<form id="reviewForm" style="max-width:400px; margin:0 auto;">
-  <input 
-    type="text" 
-    id="reviewName" 
-    placeholder="Your Name"
-    required
-    style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:none;"
-  >
-
-  <textarea 
-    id="reviewText" 
-    placeholder="Write your review..."
-    required
-    rows="3"
-    style="width:100%; padding:10px; border-radius:6px; border:none;"
-  ></textarea>
-
-  <button 
-    type="submit"
-    style="margin-top:10px; width:100%;"
-  >
-    Submit Review
-  </button>
-</form>
-
-
   </div>
+
+  <hr style="margin:30px 0; opacity:0.3;">
+
+  <h3>Add Your Review</h3>
+
+  <form id="reviewForm" style="max-width:400px; margin:0 auto;">
+    <input type="text" id="reviewName" placeholder="Your Name" required
+      style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:none;">
+    <textarea id="reviewText" placeholder="Write your review..." required rows="3"
+      style="width:100%; padding:10px; border-radius:6px; border:none;"></textarea>
+    <button type="submit" style="margin-top:10px; width:100%;">Submit Review</button>
+  </form>
 </section>
 
-
-<!-- FLOATING INSTAGRAM & CART (UNCHANGED) -->
+<!-- FLOATING ICONS -->
 <div class="floating-icons">
-
-  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon" aria-label="Instagram">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
   </a>
-
-  <a href="#" class="floating-icon" aria-label="Cart">
-    🛍️
-    <span class="cart-badge-float" id="floating-cart-count">0</span>
+  <a href="cart.html" class="floating-icon">
+    🛍️ <span class="cart-badge-float" id="floating-cart-count">0</span>
   </a>
-
 </div>
 
-<!-- CART COUNT SYNC (UNCHANGED) -->
+<!-- CART + SLIDERS -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+function addToCart() {
   const cart = JSON.parse(localStorage.getItem("lucelleCart")) || [];
-  const count = cart.length;
-  const top = document.getElementById("cart-count");
-  const floating = document.getElementById("floating-cart-count");
-  if (top) top.textContent = count;
-  if (floating) floating.textContent = count;
-});
+  cart.push({
+    name: "Lucelle True Matte Ruby Noir Lipstick",
+    price: 699,
+    image: "p1.jpg"
+  });
+  localStorage.setItem("lucelleCart", JSON.stringify(cart));
+  updateCartCount();
+  alert("Added to cart");
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("lucelleCart")) || [];
+  document.getElementById("cart-count").textContent = cart.length;
+  document.getElementById("floating-cart-count").textContent = cart.length;
+}
+
+updateCartCount();
 </script>
 
-<!-- PRODUCT SLIDER SCRIPT (ADDED ONLY THIS) -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let i = 0;
   const slides = document.querySelectorAll(".product-slide");
-
-  if (slides.length > 1) {
-    setInterval(() => {
-      slides[i].classList.remove("active");
-      i = (i + 1) % slides.length;
-      slides[i].classList.add("active");
-    }, 3000);
-  }
+  setInterval(() => {
+    slides[i].classList.remove("active");
+    i = (i + 1) % slides.length;
+    slides[i].classList.add("active");
+  }, 3000);
 });
 </script>
 
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
-  let reviewIndex = 0;
+  let r = 0;
   const reviews = document.querySelectorAll(".review");
-
-  if (reviews.length > 1) {
-    setInterval(() => {
-      reviews[reviewIndex].classList.remove("active");
-      reviewIndex = (reviewIndex + 1) % reviews.length;
-      reviews[reviewIndex].classList.add("active");
-    }, 3500);
-  }
+  setInterval(() => {
+    reviews[r].classList.remove("active");
+    r = (r + 1) % reviews.length;
+    reviews[r].classList.add("active");
+  }, 3500);
 });
 </script>
-  <script>
+
+<script>
 document.getElementById("reviewForm").addEventListener("submit", function(e) {
   e.preventDefault();
-
-  const name = document.getElementById("reviewName").value;
-  const text = document.getElementById("reviewText").value;
-
-  const newReview = document.createElement("div");
-  newReview.className = "review";
-  newReview.innerHTML = `★★★★★ "${text}" – ${name}`;
-
-  const slider = document.querySelector(".review-slider");
-  slider.prepend(newReview);
-
-  document.getElementById("reviewForm").reset();
+  const name = reviewName.value;
+  const text = reviewText.value;
+  const div = document.createElement("div");
+  div.className = "review";
+  div.innerHTML = `★★★★★ "${text}" – ${name}`;
+  document.querySelector(".review-slider").prepend(div);
+  reviewForm.reset();
 });
 </script>
-
-
 
 </body>
 </html>
