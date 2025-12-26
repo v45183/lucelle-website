@@ -3,287 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lucelle - Styled in Italy</title>
+  <title>Lucelle – Styled in Italy</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #3A0D0D;
-      color: #f9f5ef;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .logo {
-      width: 120px;
-      margin-bottom: 15px;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-      color: #D4AF37;
-    }
-
-    .tagline {
-      color: #D4AF37;
-      font-size: 18px;
-    }
-
-    .navbar {
-      background-color: #5c1a1a;
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    .navbar ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .navbar a {
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .navbar a:hover {
-      text-decoration: underline;
-    }
-
-    #cart-count {
-      background: gold;
-      color: #3A0D0D;
-      border-radius: 50%;
-      padding: 2px 8px;
-      font-size: 14px;
-      margin-left: 5px;
-    }
-
-    .about {
-      padding: 40px 20px;
-      background-color: #4c1212;
-      text-align: center;
-    }
-
-    .products {
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .product-grid {
-      display: flex;
-      justify-content: center;
-    }
-
-    .product {
-      background-color: #5c1a1a;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 260px;
-      color: #FFD700;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .product img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    button {
-      background-color: #FFD700;
-      color: #3A0D0D;
-      border: none;
-      padding: 10px;
-      margin-top: 12px;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #f5c518;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #2c0a0a;
-      font-size: 14px;
-    }
-
-    .floating-icons {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column-reverse;
-      gap: 10px;
-    }
-
-    .floating-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #FFD700;
-      text-align: center;
-      line-height: 50px;
-      font-size: 24px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .cart-badge-float {
-      background: red;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 12px;
-      position: absolute;
-      top: -5px;
-      right: -5px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#products">Product</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
-    </ul>
-  </nav>
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#products">Product</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <header class="hero" id="home">
-    <img src="logo.png" alt="Lucelle Logo" class="logo">
-    <h1>Lucelle</h1>
-    <p class="tagline">Styled in Italy</p>
-  </header>
+<!-- ================= HERO ================= -->
+<header class="hero" id="home">
+  <img src="logo.png" alt="Lucelle Logo" class="logo">
+  <h1>Lucelle</h1>
+  <p class="tagline">Styled in Italy</p>
+</header>
 
-  <!-- BRAND STORY -->
-  <section class="about">
-    <h2>Our Story</h2>
-    <p>
-      Lucelle was created for women who believe beauty is not just appearance,
-      but confidence, elegance, and authenticity.
-    </p>
-    <p>
-      Inspired by Italian sophistication, Lucelle combines premium formulation,
-      modern luxury, and trust — delivered through verified authenticity.
-    </p>
-  </section>
+<!-- ================= BRAND STORY ================= -->
+<section class="about">
+  <h2>Our Story</h2>
+  <p>
+    Lucelle was created for women who believe beauty is more than appearance —
+    it is confidence, elegance, and authenticity.
+  </p>
+  <p>
+    Inspired by Italian sophistication, Lucelle blends premium formulation,
+    modern luxury, and trust — delivered through verified authenticity.
+  </p>
+</section>
 
-  <!-- PRODUCT -->
-  <section class="products" id="products">
-    <h2>Our Signature Product</h2>
+<!-- ================= PRODUCT ================= -->
+<section class="products" id="products">
+  <h2>Our Signature Product</h2>
 
-    <div class="product-grid">
-      <div class="product">
-        <img src="ruby-noir.jpg" alt="Lucelle True Matte Ruby Noir Lipstick">
-        <h3>
-          Lucelle True Matte Ruby Noir Lipstick<br>
-          <span style="font-size:14px; font-weight:normal;">
-            Deep Maroon-Wine · Long Lasting · Smudge-Proof · Vegan · Alcohol-Free · 4 ml
-          </span>
-        </h3>
+  <div class="product-grid">
+    <div class="product">
+      <img src="ruby-noir.jpg" alt="Lucelle True Matte Ruby Noir Lipstick">
 
-        <p><del>₹1299</del> <strong>₹799</strong></p>
+      <h3>
+        Lucelle True Matte Ruby Noir Lipstick<br>
+        <span style="font-size:14px; font-weight:normal;">
+          Deep Maroon-Wine · Long Lasting · Smudge-Proof · Vegan · Alcohol-Free · 4 ml
+        </span>
+      </h3>
 
-        <button onclick="addToCart(
-          'Lucelle True Matte Ruby Noir Lipstick – Deep Maroon Wine, Long Lasting, Smudge-Proof, Vegan & Alcohol-Free (4 ml)',
-          799,
-          'ruby-noir.jpg'
-        )">
-          Add to Cart
-        </button>
-      </div>
+      <p><del>₹1299</del> <strong>₹799</strong></p>
+
+      <button onclick="addToCart(
+        'Lucelle True Matte Ruby Noir Lipstick – Deep Maroon Wine, Long Lasting, Smudge-Proof, Vegan & Alcohol-Free (4 ml)',
+        799,
+        'ruby-noir.jpg'
+      )">
+        Add to Cart
+      </button>
     </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="about">
-    <h2>Customer Reviews</h2>
-
-    <p style="color:#FFD700;">★★★★★</p>
-    <p>
-      “The shade is stunning and feels extremely premium.
-      The QR authenticity check gave me full confidence.”
-    </p>
-    <p><strong>— Aditi, Mumbai</strong></p>
-
-    <br>
-
-    <p style="color:#FFD700;">★★★★★</p>
-    <p>
-      “Long lasting, comfortable, and elegant.
-      Lucelle truly feels like a luxury brand.”
-    </p>
-    <p><strong>— Neha, Delhi</strong></p>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <h2>About Lucelle</h2>
-    <p>
-      Lucelle is a premium beauty brand blending Italian inspiration with
-      modern craftsmanship — built on trust, quality, and elegance.
-    </p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 Lucelle. All rights reserved.</p>
-  </footer>
-
-  <!-- FLOATING ICONS -->
-  <div class="floating-icons">
-    <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">
-      📸
-    </a>
-    <a href="cart.html" class="floating-icon" style="position:relative;">
-      🛍️
-      <span class="cart-badge-float" id="floating-cart-count">0</span>
-    </a>
   </div>
+</section>
 
-  <!-- SCRIPT -->
-  <script>
-    function addToCart(name, price, image) {
-      let cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-      cart.push({ name, price, image });
-      localStorage.setItem('lucelleCart', JSON.stringify(cart));
-      updateCartCount();
-    }
+<!-- ================= REVIEWS SLIDER ================= -->
+<section class="about">
+  <h2>Customer Reviews</h2>
 
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-      const count = cart.length;
-      document.getElementById('cart-count').textContent = count;
-      document.getElementById('floating-cart-count').textContent = count;
-    }
+  <div class="review-slider">
 
-    window.onload = updateCartCount;
-  </script>
+    <div class="review active">
+      <p class="stars">★★★★★</p>
+      <p>“The shade is exactly what I was looking for. Looks elegant and feels very comfortable.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Aditi, Mumbai</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★★</p>
+      <p>“Loved the packaging and finish. The QR verification builds instant trust.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Neha, Delhi</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★☆</p>
+      <p>“Good pigmentation and stays for hours. Doesn’t feel heavy on lips.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Riya, Bengaluru</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★★</p>
+      <p>“Color looks rich and premium. Feels like a luxury lipstick.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Pooja, Pune</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★☆</p>
+      <p>“Smooth application, no strong smell, and very comfortable.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Ananya, Kolkata</p>
+    </div>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <h2>About Lucelle</h2>
+  <p>
+    Lucelle is a premium beauty brand blending Italian inspiration with modern craftsmanship —
+    built on trust, quality, and elegance.
+  </p>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>&copy; 2025 Lucelle. All rights reserved.</p>
+</footer>
+
+<!-- ================= FLOATING ICONS ================= -->
+<div class="floating-icons">
+  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">
+    📸
+  </a>
+  <a href="cart.html" class="floating-icon">
+    🛍️
+    <span class="cart-badge-float" id="floating-cart-count">0</span>
+  </a>
+</div>
+
+<!-- ================= CART SCRIPT ================= -->
+<script>
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+    cart.push({ name, price, image });
+    localStorage.setItem('lucelleCart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
+    document.getElementById('cart-count').textContent = cart.length;
+    document.getElementById('floating-cart-count').textContent = cart.length;
+  }
+
+  window.onload = updateCartCount;
+</script>
+
+<!-- ================= REVIEW SLIDER SCRIPT ================= -->
+<script>
+  let reviewIndex = 0;
+  const reviews = document.querySelectorAll('.review');
+  const dots = document.querySelectorAll('.dot');
+
+  function showReview(index) {
+    reviews.forEach((r, i) => {
+      r.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+    });
+  }
+
+  function nextReview() {
+    reviewIndex = (reviewIndex + 1) % reviews.length;
+    showReview(reviewIndex);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      reviewIndex = i;
+      showReview(reviewIndex);
+    });
+  });
+
+  setInterval(nextReview, 4000);
+</script>
 
 </body>
 </html>
