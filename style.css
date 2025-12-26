@@ -119,3 +119,11 @@ h1, h2 {
   border-radius: 50%;
   font-weight: bold;
 }
+/* ===== REVIEW SLIDER FIX ===== */
+.review {
+  display: none;
+}
+
+.review.active {
+  display: block;
+}
