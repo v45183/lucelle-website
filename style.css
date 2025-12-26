@@ -1,13 +1,14 @@
+/* GENERAL */
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background: #3A0D0D;
+  background-color: #3A0D0D;
   color: #f9f5ef;
 }
 
 /* NAVBAR */
 .navbar {
-  background: #5c1a1a;
+  background-color: #5c1a1a;
   padding: 10px 0;
 }
 .navbar ul {
@@ -19,96 +20,75 @@ body {
   padding: 0;
 }
 .navbar a {
-  color: gold;
+  color: #FFD700;
   text-decoration: none;
   font-weight: bold;
+}
+#cart-count {
+  background: gold;
+  color: #3A0D0D;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 14px;
+  margin-left: 5px;
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 40px;
+  padding: 40px 20px;
 }
 .logo {
   width: 120px;
+  margin-bottom: 15px;
 }
 h1, h2 {
   font-family: 'Playfair Display', serif;
   color: #D4AF37;
 }
-
-/* PRODUCT */
-.product-section {
-  text-align: center;
-  padding: 40px;
-}
-.slider {
-  max-width: 250px;
-  margin: auto;
-}
-.slide {
-  display: none;
-  width: 100%;
-  border-radius: 10px;
-}
-.slide.active {
-  display: block;
-}
-.price {
-  font-size: 20px;
-}
-button {
-  background: gold;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: bold;
+.tagline {
+  color: #D4AF37;
+  font-size: 18px;
 }
 
-/* REVIEWS */
-.reviews {
-  text-align: center;
-  padding: 40px;
-}
-.review {
-  display: none;
-}
-.review.active {
-  display: block;
-}
-
-/* ABOUT */
+/* SECTION */
 .about {
-  background: #4c1212;
-  padding: 40px;
+  padding: 40px 20px;
+  background-color: #4c1212;
   text-align: center;
 }
 
-/* FLOATING BUTTONS */
-.floating {
+/* FLOATING INSTAGRAM & CART (FINAL FIX) */
+.floating-icons {
   position: fixed;
-  right: 20px;
   bottom: 20px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  z-index: 9999;
 }
-.float-btn {
+
+.floating-icon {
   width: 50px;
   height: 50px;
-  background: gold;
+  background-color: #FFD700;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
   text-decoration: none;
-  color: black;
   position: relative;
 }
-.float-btn img {
+
+.floating-icon img {
   width: 26px;
+  height: 26px;
 }
-.cart span {
+
+/* CART BADGE */
+.cart-badge-float {
   position: absolute;
   top: -6px;
   right: -6px;
@@ -117,4 +97,5 @@ button {
   font-size: 12px;
   padding: 2px 6px;
   border-radius: 50%;
+  font-weight: bold;
 }
