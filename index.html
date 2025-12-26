@@ -1,217 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lucelle – Styled in Italy</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <ul>
     <li><a href="#home">Home</a></li>
-    <li><a href="#products">Product</a></li>
+    <li><a href="#product">Product</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+    <li><a href="#">Cart <span id="cart-count">0</span></a></li>
   </ul>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <header class="hero" id="home">
-  <img src="logo.png" alt="Lucelle Logo" class="logo">
+  <img src="logo.png" class="logo" alt="Lucelle">
   <h1>Lucelle</h1>
   <p class="tagline">Styled in Italy</p>
 </header>
 
-<!-- ================= STORY ================= -->
-<section class="about">
-  <h2>Our Story</h2>
-  <p>
-    Lucelle is crafted for women who believe beauty is confidence,
-    elegance, and authenticity — not just appearance.
-  </p>
-</section>
+<!-- PRODUCT -->
+<section class="product-section" id="product">
+  <h2>Lucelle True Matte Ruby Noir</h2>
 
-<!-- ================= PRODUCT ================= -->
-<section class="products" id="products">
-  <h2>Our Signature Product</h2>
-
-  <div class="product-grid">
-    <div class="product">
-
-      <!-- PRODUCT IMAGE SLIDER -->
-      <div class="product-slider">
-        <img src="p1.jpg" class="product-slide active" alt="Lucelle Lipstick">
-        <img src="p2.jpg" class="product-slide" alt="Lucelle Lipstick">
-        <img src="p3.jpg" class="product-slide" alt="Lucelle Lipstick">
-        <img src="p4.jpg" class="product-slide" alt="Lucelle Lipstick">
-        <img src="p5.jpg" class="product-slide" alt="Lucelle Lipstick">
-        <img src="p6.jpg" class="product-slide" alt="Lucelle Lipstick">
-        <img src="p7.jpg" class="product-slide" alt="Lucelle Lipstick">
-
-        <div class="product-dots">
-          <span class="p-dot active"></span>
-          <span class="p-dot"></span>
-          <span class="p-dot"></span>
-          <span class="p-dot"></span>
-          <span class="p-dot"></span>
-          <span class="p-dot"></span>
-          <span class="p-dot"></span>
-        </div>
-      </div>
-
-      <h3>
-        Lucelle True Matte Ruby Noir Lipstick<br>
-        <span style="font-size:14px;font-weight:normal;">
-          Deep Maroon-Wine · Long Lasting · Smudge-Proof · Vegan · Alcohol-Free · 4 ml
-        </span>
-      </h3>
-
-      <p><del>₹1299</del> <strong>₹799</strong></p>
-
-      <button onclick="addToCart(
-        'Lucelle True Matte Ruby Noir Lipstick (4 ml)',
-        799,
-        'p1.jpg'
-      )">
-        Add to Cart
-      </button>
-
-    </div>
+  <div class="slider">
+    <img src="p1.jpg" class="slide active">
+    <img src="p2.jpg" class="slide">
+    <img src="p3.jpg" class="slide">
   </div>
+
+  <p class="price"><del>₹1299</del> ₹799</p>
+  <button>Add to Cart</button>
 </section>
 
-<!-- ================= REVIEWS ================= -->
-<section class="about" id="reviews">
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
   <h2>Customer Reviews</h2>
 
-  <div class="review-slider">
-    <div class="review active">
-      <p class="stars">★★★★★</p>
-      <p>Elegant shade and premium feel.</p>
-      <span class="verified">✔ Verified Purchase</span>
-      <p class="author">— Aditi, Mumbai</p>
-    </div>
-
-    <div class="review">
-      <p class="stars">★★★★★</p>
-      <p>Very classy packaging and smooth texture.</p>
-      <span class="verified">✔ Verified Purchase</span>
-      <p class="author">— Neha, Delhi</p>
-    </div>
-
-    <div class="review">
-      <p class="stars">★★★★☆</p>
-      <p>Comfortable for daily wear.</p>
-      <span class="verified">✔ Verified Purchase</span>
-      <p class="author">— Riya, Bengaluru</p>
-    </div>
-
-    <div class="review">
-      <p class="stars">★★★★★</p>
-      <p>Luxury feel without dryness.</p>
-      <span class="verified">✔ Verified Purchase</span>
-      <p class="author">— Pooja, Pune</p>
-    </div>
-
-    <div class="review">
-      <p class="stars">★★★★☆</p>
-      <p>Nice pigment, stays long.</p>
-      <span class="verified">✔ Verified Purchase</span>
-      <p class="author">— Ananya, Kolkata</p>
-    </div>
-
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </div>
+  <div class="review active">★★★★★ Elegant and premium – Aditi</div>
+  <div class="review">★★★★★ Smooth texture – Neha</div>
+  <div class="review">★★★★☆ Long lasting – Riya</div>
 </section>
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 <section class="about" id="about">
   <h2>About Lucelle</h2>
-  <p>
-    Lucelle is a premium beauty brand inspired by Italian elegance,
-    focused on authenticity, quality, and modern luxury.
-  </p>
+  <p>Lucelle blends Italian elegance with modern beauty.</p>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  <p>&copy; 2025 Lucelle. All rights reserved.</p>
-</footer>
-
-<!-- ================= FLOATING ICONS (ONLY PLACE THEY EXIST) ================= -->
-<div class="floating-icons">
-
-  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+<!-- FLOATING BUTTONS -->
+<div class="floating">
+  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="float-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
   </a>
-
-  <a href="cart.html" class="floating-icon">
-    🛍️
-    <span class="cart-badge-float" id="floating-cart-count">0</span>
+  <a href="#" class="float-btn cart">
+    🛍️ <span id="float-count">0</span>
   </a>
-
 </div>
 
-<!-- ================= JS ================= -->
+<!-- JS -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+/* PRODUCT SLIDER */
+let s = 0;
+const slides = document.querySelectorAll(".slide");
+setInterval(() => {
+  slides[s].classList.remove("active");
+  s = (s + 1) % slides.length;
+  slides[s].classList.add("active");
+}, 3000);
 
-  /* CART */
-  function updateCart() {
-    const cart = JSON.parse(localStorage.getItem("lucelleCart")) || [];
-    document.getElementById("cart-count").textContent = cart.length;
-    document.getElementById("floating-cart-count").textContent = cart.length;
-  }
-
-  window.addToCart = function(name, price, image) {
-    const cart = JSON.parse(localStorage.getItem("lucelleCart")) || [];
-    cart.push({ name, price, image });
-    localStorage.setItem("lucelleCart", JSON.stringify(cart));
-    updateCart();
-  };
-
-  updateCart();
-
-  /* REVIEW SLIDER */
-  let r = 0;
-  const reviews = document.querySelectorAll(".review");
-  const dots = document.querySelectorAll(".dot");
-
-  setInterval(() => {
-    reviews[r].classList.remove("active");
-    dots[r].classList.remove("active");
-    r = (r + 1) % reviews.length;
-    reviews[r].classList.add("active");
-    dots[r].classList.add("active");
-  }, 4000);
-
-  /* PRODUCT SLIDER */
-  let p = 0;
-  const slides = document.querySelectorAll(".product-slide");
-  const pdots = document.querySelectorAll(".p-dot");
-
-  setInterval(() => {
-    slides[p].classList.remove("active");
-    pdots[p].classList.remove("active");
-    p = (p + 1) % slides.length;
-    slides[p].classList.add("active");
-    pdots[p].classList.add("active");
-  }, 3000);
-
-});
+/* REVIEW SLIDER */
+let r = 0;
+const reviews = document.querySelectorAll(".review");
+setInterval(() => {
+  reviews[r].classList.remove("active");
+  r = (r + 1) % reviews.length;
+  reviews[r].classList.add("active");
+}, 4000);
 </script>
 
 </body>
