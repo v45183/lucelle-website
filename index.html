@@ -47,8 +47,29 @@
 
   <div class="product-grid">
     <div class="product">
-      <img src="ruby-noir.jpg" alt="Lucelle True Matte Ruby Noir Lipstick">
 
+      <!-- PRODUCT IMAGE SLIDER -->
+      <div class="product-slider">
+        <img src="p1.jpg" class="product-slide active" alt="Lucelle Lipstick Image 1">
+        <img src="p2.jpg" class="product-slide" alt="Lucelle Lipstick Image 2">
+        <img src="p3.jpg" class="product-slide" alt="Lucelle Lipstick Image 3">
+        <img src="p4.jpg" class="product-slide" alt="Lucelle Lipstick Image 4">
+        <img src="p5.jpg" class="product-slide" alt="Lucelle Lipstick Image 5">
+        <img src="p6.jpg" class="product-slide" alt="Lucelle Lipstick Image 6">
+        <img src="p7.jpg" class="product-slide" alt="Lucelle Lipstick Image 7">
+
+        <div class="product-dots">
+          <span class="p-dot active"></span>
+          <span class="p-dot"></span>
+          <span class="p-dot"></span>
+          <span class="p-dot"></span>
+          <span class="p-dot"></span>
+          <span class="p-dot"></span>
+          <span class="p-dot"></span>
+        </div>
+      </div>
+
+      <!-- PRODUCT DETAILS -->
       <h3>
         Lucelle True Matte Ruby Noir Lipstick<br>
         <span style="font-size:14px; font-weight:normal;">
@@ -61,10 +82,11 @@
       <button onclick="addToCart(
         'Lucelle True Matte Ruby Noir Lipstick – Deep Maroon Wine, Long Lasting, Smudge-Proof, Vegan & Alcohol-Free (4 ml)',
         799,
-        'ruby-noir.jpg'
+        'p1.jpg'
       )">
         Add to Cart
       </button>
+
     </div>
   </div>
 </section>
@@ -178,7 +200,6 @@
       Thank you for your review! 💛
     </p>
   </div>
-
 </section>
 
 <!-- ================= ABOUT ================= -->
@@ -214,49 +235,4 @@
 
   function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('lucelleCart')) || [];
-    document.getElementById('cart-count').textContent = cart.length;
-    document.getElementById('floating-cart-count').textContent = cart.length;
-  }
-
-  window.onload = updateCartCount;
-</script>
-
-<!-- ================= REVIEW SLIDER SCRIPT ================= -->
-<script>
-  let reviewIndex = 0;
-  const reviews = document.querySelectorAll('.review');
-  const dots = document.querySelectorAll('.dot');
-
-  function showReview(index) {
-    reviews.forEach((r, i) => {
-      r.classList.toggle('active', i === index);
-      dots[i].classList.toggle('active', i === index);
-    });
-  }
-
-  function nextReview() {
-    reviewIndex = (reviewIndex + 1) % reviews.length;
-    showReview(reviewIndex);
-  }
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      reviewIndex = i;
-      showReview(reviewIndex);
-    });
-  });
-
-  setInterval(nextReview, 4000);
-</script>
-
-<!-- ================= WRITE REVIEW SCRIPT ================= -->
-<script>
-  function submitReview(e) {
-    e.preventDefault();
-    document.getElementById("review-msg").style.display = "block";
-    e.target.reset();
-  }
-</script>
-
-</body>
-</html>
+    document.g
