@@ -69,7 +69,7 @@
   </div>
 </section>
 
-<!-- ================= REVIEWS SLIDER ================= -->
+<!-- ================= REVIEWS ================= -->
 <section class="about">
   <h2>Customer Reviews</h2>
 
@@ -77,37 +77,72 @@
 
     <div class="review active">
       <p class="stars">★★★★★</p>
-      <p>“The shade is exactly what I was looking for. Looks elegant and feels very comfortable.”</p>
+      <p>“The shade is exactly what I wanted. Looks elegant and premium.”</p>
       <span class="verified">✔ Verified Purchase</span>
       <p class="author">— Aditi, Mumbai</p>
     </div>
 
     <div class="review">
       <p class="stars">★★★★★</p>
-      <p>“Loved the packaging and finish. The QR verification builds instant trust.”</p>
+      <p>“Packaging and finish are really good. QR verification builds trust.”</p>
       <span class="verified">✔ Verified Purchase</span>
       <p class="author">— Neha, Delhi</p>
     </div>
 
     <div class="review">
       <p class="stars">★★★★☆</p>
-      <p>“Good pigmentation and stays for hours. Doesn’t feel heavy on lips.”</p>
+      <p>“Good pigmentation and comfortable for long hours.”</p>
       <span class="verified">✔ Verified Purchase</span>
       <p class="author">— Riya, Bengaluru</p>
     </div>
 
     <div class="review">
       <p class="stars">★★★★★</p>
-      <p>“Color looks rich and premium. Feels like a luxury lipstick.”</p>
+      <p>“Color looks rich and luxurious. Doesn’t dry my lips.”</p>
       <span class="verified">✔ Verified Purchase</span>
       <p class="author">— Pooja, Pune</p>
     </div>
 
     <div class="review">
       <p class="stars">★★★★☆</p>
-      <p>“Smooth application, no strong smell, and very comfortable.”</p>
+      <p>“Smooth application and no strong smell. Worth buying.”</p>
       <span class="verified">✔ Verified Purchase</span>
       <p class="author">— Ananya, Kolkata</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★★</p>
+      <p>“Finally a vegan lipstick that feels premium.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Kriti, Jaipur</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★☆</p>
+      <p>“Long lasting and suits Indian skin tone well.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Sneha, Indore</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★★</p>
+      <p>“Looks exactly like the photos. Very classy packaging.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Tanya, Noida</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★☆</p>
+      <p>“Good for daily wear. Doesn’t feel heavy.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Shreya, Patna</p>
+    </div>
+
+    <div class="review">
+      <p class="stars">★★★★★</p>
+      <p>“Luxury feel at a reasonable price. Loved it.”</p>
+      <span class="verified">✔ Verified Purchase</span>
+      <p class="author">— Mehak, Chandigarh</p>
     </div>
 
     <div class="dots">
@@ -116,9 +151,34 @@
       <span class="dot"></span>
       <span class="dot"></span>
       <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
 
   </div>
+
+  <!-- WRITE REVIEW -->
+  <div style="margin-top:40px;">
+    <h3 style="color:#D4AF37;">Write a Review</h3>
+
+    <form onsubmit="submitReview(event)" style="max-width:400px; margin:0 auto;">
+      <input type="text" placeholder="Your Name" required
+        style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:none;">
+
+      <textarea placeholder="Your Review" required
+        style="width:100%; padding:10px; height:80px; border-radius:6px; border:none;"></textarea>
+
+      <button type="submit" style="margin-top:10px;">Submit Review</button>
+    </form>
+
+    <p id="review-msg" style="display:none; color:#4CAF50; margin-top:10px;">
+      Thank you for your review! 💛
+    </p>
+  </div>
+
 </section>
 
 <!-- ================= ABOUT ================= -->
@@ -137,12 +197,9 @@
 
 <!-- ================= FLOATING ICONS ================= -->
 <div class="floating-icons">
-  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">
-    📸
-  </a>
+  <a href="https://www.instagram.com/mylucelle/" target="_blank" class="floating-icon">📸</a>
   <a href="cart.html" class="floating-icon">
-    🛍️
-    <span class="cart-badge-float" id="floating-cart-count">0</span>
+    🛍️ <span class="cart-badge-float" id="floating-cart-count">0</span>
   </a>
 </div>
 
@@ -190,6 +247,15 @@
   });
 
   setInterval(nextReview, 4000);
+</script>
+
+<!-- ================= WRITE REVIEW SCRIPT ================= -->
+<script>
+  function submitReview(e) {
+    e.preventDefault();
+    document.getElementById("review-msg").style.display = "block";
+    e.target.reset();
+  }
 </script>
 
 </body>
